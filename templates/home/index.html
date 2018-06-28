@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>welcome to giggles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>    
+    
+    {% load static %}
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static "home/css/style.css" %}" />
+    <script src="{% static "home/scripts/script.js" %}"></script>
+
+</head>
+<body>
+    <div class="container-fluid h-100">
+
+        <div class=" header col-12">
+            <div class="header_left" >
+                <span class="text_logo ">giggles</span>
+            </div>
+            <div class="header_right align-middle" >
+                {% block content %}
+                {% if user.is_authenticated  %}
+                <span >Hi, {{ user.username }}</span>
+                <a  class ="popover_class" href="#" data-toggle="popover" data-placement="bottom" 
+                     </a>
+                        <img class= "down_arrow" src="{% static "home/assets/icon-arrow-down.png" %}">
+                </a>
+                
+                {% else %}
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Sign up </button>
+                {% endif %}
+                {% endblock %}
+            </div>
+            <!--modal-->
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+              
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h4 class="modal-title">Sign up </h4>
+                      <button type="button" class="close"  data-dismiss="modal">&times;</button>
+                    </div>  
+              
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div id="signup_form">
+                          <!--Signup form -->
+                        <form method="POST" >
+                          {% csrf_token %}
+                          {{ forms.signup_form.as_p }}
+                           <input type="submit" value="submit"/>
+                           <a id="signin_link" href="#">already registered?, sign in</a>
+                        </form>
+                        </div>
+                        <!--Login form-->
+                        <div id="signin_form" style="visibility: hidden;">
+                            <form action="login" method="POST" >
+                                {% csrf_token %}
+                                {{forms.login_form.as_p}}
+                                <input type="submit" value="submit"/>
+                            </form>
+                              
+
+                      </div>
+                        
+                    </div>
+              
+                  </div>
+                </div>
+              </div>
+
+        </div>
+        <div id="page" class="col-12 h-100">
+            page
+        </div>
+    </div>
+    
+</body>
+</html>

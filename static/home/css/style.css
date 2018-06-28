@@ -1,0 +1,40 @@
+
+.text_logo{
+    font-size: xx-large;
+}
+
+.header_right{
+    float:right;
+    
+}
+
+.header_left{
+    float:left;
+}
+.header{
+    background-color:  blue;
+    color: white;
+    padding-top: 0px;
+    padding-bottom: 0px; 
+    align-items:   center;
+    height: 50px;
+    
+}
+.container-fluid{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.modal-dialog{
+    max-width: 500px;
+    width: 100%;
+}
+.modal-content{
+    color: black;
+}
+
+.down_arrow{
+    display: inline-block;
+    height: 100%;
+    max-height: 15px;
+    width: auto;
+}
