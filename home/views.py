@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from  .forms import SignUpForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth import logout
@@ -51,3 +51,8 @@ def login_view(request):
         else:
             return HttpResponseRedirect("home")
     
+def get_tweets(request):
+    if request.method == "GET":
+        return JsonResponse({"first": "name", "last"  : "name"})
+    else:
+        return JsonResponse({"first": "sourabh", "last"  : "gupta"})
